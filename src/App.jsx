@@ -33,7 +33,7 @@ export default function App() {
     }
   }, [darkTheme]);
 
-  const isBlogRoute = window.location.pathname === "/blogs";
+  const isBlogRoute = window.location.pathname.startsWith("/blogs");
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300 flex flex-col font-outfit overflow-x-hidden">
