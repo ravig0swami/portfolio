@@ -9,17 +9,47 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError("");
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/dev.ravig0swami@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: formState.name,
+            email: formState.email,
+            message: formState.message,
+            _subject: `New portfolio message from ${formState.name}`,
+            _template: "table",
+            _captcha: "false",
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Message delivery failed");
+      }
+
       setIsSubmitting(false);
       setIsSent(true);
       setFormState({ name: "", email: "", message: "" });
       setTimeout(() => setIsSent(false), 3000);
-    }, 1200);
+    } catch {
+      setIsSubmitting(false);
+      setSubmitError(
+        "We could not send your message. Please try again or email me directly.",
+      );
+    }
   };
 
   const handleChange = (e) => {
@@ -63,7 +93,7 @@ export default function Contact() {
                   value={formState.name}
                   onChange={handleChange}
                   required
-                  placeholder="Ravi Goswami"
+                  placeholder="John Doe "
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-black dark:border-zinc-700 bg-white dark:bg-zinc-950 font-outfit text-sm sm:text-base text-black dark:text-white placeholder-zinc-400 focus:outline-none focus:border-zinc-500 dark:focus:border-zinc-400 transition-colors"
                 />
               </div>
@@ -81,7 +111,7 @@ export default function Contact() {
                   value={formState.email}
                   onChange={handleChange}
                   required
-                  placeholder="ravikantkumarpuri98@gmail.com"
+                  placeholder="you@example.com"
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-black dark:border-zinc-700 bg-white dark:bg-zinc-950 font-outfit text-sm sm:text-base text-black dark:text-white placeholder-zinc-400 focus:outline-none focus:border-zinc-500 dark:focus:border-zinc-400 transition-colors"
                 />
               </div>
@@ -132,6 +162,11 @@ export default function Contact() {
                 </>
               )}
             </button>
+            {submitError && (
+              <p className="font-outfit text-sm text-red-600 dark:text-red-400" role="alert">
+                {submitError}
+              </p>
+            )}
           </form>
         </div>
 
@@ -147,10 +182,10 @@ export default function Contact() {
                   Email Me
                 </h3>
                 <a
-                  href="mailto:ravikantkumarpuri98@gmail.com"
+                  href="mailto:dev.ravig0swami@gmail.com"
                   className="font-outfit text-sm sm:text-base text-zinc-600 dark:text-zinc-400 hover:underline break-all"
                 >
-                  ravikantkumarpuri98@gmail.com
+                  dev.ravig0swami@gmail.com
                 </a>
               </div>
             </div>

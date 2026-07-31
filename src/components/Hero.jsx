@@ -27,7 +27,7 @@ export default function Hero() {
     },
     {
       icon: <Mail size={20} />,
-      url: "mailto:ravikantkumarpuri98@gmail.com",
+      url: "mailto:dev.ravig0swami@gmail.com",
       label: "Email",
     },
   ];

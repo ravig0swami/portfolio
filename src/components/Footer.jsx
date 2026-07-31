@@ -1,6 +1,9 @@
 import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
+  const isBlogRoute = window.location.pathname.startsWith("/blogs");
+  const sectionHref = (section) => (isBlogRoute ? `/#${section}` : `#${section}`);
+
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -11,7 +14,7 @@ export default function Footer() {
         {/* Logo and Copyright */}
         <div className="text-center sm:text-left space-y-1.5">
           <a
-            href="#"
+            href={isBlogRoute ? "/" : "#"}
             className="font-space font-bold text-lg sm:text-xl tracking-tight"
           >
             RG
@@ -28,34 +31,34 @@ export default function Footer() {
         {/* Footer Nav Links */}
         <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6 text-xs sm:text-sm font-space font-medium">
           <a
-            href="#about"
+            href={sectionHref("about")}
             className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
           >
             About
           </a>
           <a
-            href="#skills"
+            href={sectionHref("skills")}
             className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
           >
             Skills
           </a>
           <a
-            href="#experience"
+            href={sectionHref("experience")}
             className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
           >
             Experience
           </a>
           <a
-            href="#projects"
+            href={sectionHref("projects")}
             className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
           >
             Projects
           </a>
           <a
-            href="#contact"
+            href="/blogs"
             className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
           >
-            Contact
+            Blogs
           </a>
         </nav>
 

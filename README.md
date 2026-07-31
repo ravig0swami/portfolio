@@ -71,7 +71,7 @@ portfolio/
 
 * Portfolio: [https://ravig0swami.vercel.app/](https://ravig0swami.vercel.app/)
 * GitHub: [https://github.com/ravig0swami](https://github.com/ravig0swami)
-* Email: [ravikantkumarpuri98@gmail.com](mailto:ravikantkumarpuri98@gmail.com)
+* Email: [dev.ravig0swami@gmail.com](mailto:dev.ravig0swami@gmail.com)
 
 ## License
 

@@ -3,13 +3,15 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 
 export default function Header({ darkTheme, setDarkTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isBlogRoute = window.location.pathname.startsWith("/blogs");
+  const sectionHref = (section) => (isBlogRoute ? `/#${section}` : `#${section}`);
 
   const navItems = [
-    { label: "About Me", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact Me", href: "#contact" },
+    { label: "About Me", href: sectionHref("about") },
+    { label: "Skills", href: sectionHref("skills") },
+    { label: "Experience", href: sectionHref("experience") },
+    { label: "Projects", href: sectionHref("projects") },
+    { label: "Blogs", href: "/blogs" },
   ];
 
   return (
@@ -17,7 +19,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
         {/* Logo */}
         <a
-          href="#"
+          href={isBlogRoute ? "/" : "#"}
           className="font-space font-bold text-xl sm:text-2xl tracking-tight hover:-translate-y-0.5 transition-transform shrink-0"
         >
           RG
@@ -50,7 +52,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
           </button>
 
           <a
-            href="#contact"
+            href={sectionHref("contact")}
             className="px-4 py-2 font-space font-bold text-sm bg-black dark:bg-white text-white dark:text-black neo-btn whitespace-nowrap"
           >
             Get In Touch
@@ -94,7 +96,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
           </nav>
           <div className="pt-2">
             <a
-              href="#contact"
+              href={sectionHref("contact")}
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full text-center px-4 py-3 font-space font-bold bg-black dark:bg-white text-white dark:text-black neo-btn"
             >

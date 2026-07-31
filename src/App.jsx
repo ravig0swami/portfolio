@@ -7,6 +7,7 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Blogs from "./components/Blogs";
 
 export default function App() {
   const [darkTheme, setDarkTheme] = useState(() => {
@@ -32,31 +33,25 @@ export default function App() {
     }
   }, [darkTheme]);
 
+  const isBlogRoute = window.location.pathname === "/blogs";
+
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300 flex flex-col font-outfit overflow-x-hidden">
       {/* Header */}
       <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
 
-      {/* Main Content Sections */}
-      <main className="flex-grow">
-        {/* Hero Banner */}
-        <Hero />
-
-        {/* About Section */}
-        <About />
-
-        {/* Skills Section */}
-        <Skills />
-
-        {/* Experience Section */}
-        <Experience />
-
-        {/* Projects Section */}
-        <Projects />
-
-        {/* Contact Section */}
-        <Contact />
-      </main>
+      {isBlogRoute ? (
+        <Blogs />
+      ) : (
+        <main className="flex-grow">
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Contact />
+        </main>
+      )}
 
       {/* Footer */}
       <Footer />
