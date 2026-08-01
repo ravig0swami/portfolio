@@ -10,6 +10,7 @@ import {
   Tag,
 } from "lucide-react";
 import { useState } from "react";
+import blogImg from "../assets/blogs-reading.png";
 
 const blogPosts = [
   {
@@ -171,18 +172,30 @@ export default function Blogs() {
           <ArrowLeft size={18} /> Back to portfolio
         </a>
 
-        <div className="max-w-4xl space-y-5">
-          <p className="font-space font-bold text-sm uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
-            Ravi&apos;s notebook
-          </p>
-          <h1 className="font-space font-extrabold text-5xl sm:text-6xl md:text-8xl leading-[0.95]">
-            Ideas worth
-            <span className="block text-zinc-500 dark:text-zinc-400">shipping.</span>
-          </h1>
-          <p className="max-w-2xl font-outfit text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Tutorials, experiments, and notes from building useful products with
-            React, Node.js, and the technologies shaping the web.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-7 space-y-5">
+            <p className="font-space font-bold text-sm uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+              Ravi&apos;s notebook
+            </p>
+            <h1 className="font-space font-extrabold text-5xl sm:text-6xl md:text-8xl leading-[0.95]">
+              Ideas worth
+              <span className="block text-zinc-500 dark:text-zinc-400">shipping.</span>
+            </h1>
+            <p className="max-w-2xl font-outfit text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Tutorials, experiments, and notes from building useful products with
+              React, Node.js, and the technologies shaping the web.
+            </p>
+          </div>
+
+          <div className="lg:col-span-5 flex justify-center items-center">
+            <div className="relative p-3 sm:p-4 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white neo-shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md">
+              <img
+                src={blogImg}
+                alt="Developer reading and writing about technology"
+                className="w-full h-auto object-contain mono-illustration animate-float"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -231,7 +244,7 @@ export default function Blogs() {
           ))}
         </div>
 
-        <div className="mt-16 border-2 border-black dark:border-white p-6 sm:p-8 neo-shadow max-w-3xl">
+        <div className="mt-16 w-full border-2 border-black dark:border-white p-6 sm:p-8 neo-shadow">
           <h2 className="font-space font-extrabold text-2xl mb-2">More posts soon.</h2>
           <p className="font-outfit text-zinc-600 dark:text-zinc-400 leading-relaxed">
             This is where new tutorials, project breakdowns, and technology notes

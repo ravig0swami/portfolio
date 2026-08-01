@@ -80,6 +80,75 @@
   box-shadow: 7px 7px 0px 0px currentColor;
 }
 
+.skill-card {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 2px solid currentColor;
+  background: var(--color-white);
+  box-shadow: 3px 3px 0 currentColor;
+  transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease,
+    color 250ms ease, border-color 250ms ease;
+}
+
+.dark .skill-card {
+  background: var(--color-zinc-900);
+}
+
+.skill-card:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 6px 6px 0 currentColor;
+}
+
+.skill-card:focus-within {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+.skill-card-featured {
+  box-shadow: 5px 5px 0 currentColor;
+}
+
+.skill-card-featured:hover {
+  box-shadow: 8px 8px 0 currentColor;
+}
+
+.skill-card-icon {
+  flex: 0 0 auto;
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.skill-card-featured .skill-card-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.skills-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 500ms ease var(--reveal-delay), transform 500ms ease var(--reveal-delay);
+}
+
+.skills-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card,
+  .skills-reveal {
+    transition: none;
+  }
+
+  .skills-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Simple outline icons filter */
 .mono-illustration {
   filter: grayscale(1) contrast(1.1);
