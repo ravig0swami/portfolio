@@ -64,15 +64,6 @@ portfolio/
 ├── package.json
 └── README.md
 ```
-
-## Author
-
-**Ravi Goswami**
-
-* Portfolio: [https://ravig0swami.vercel.app/](https://ravig0swami.vercel.app/)
-* GitHub: [https://github.com/ravig0swami](https://github.com/ravig0swami)
-* Email: [dev.ravig0swami@gmail.com](mailto:dev.ravig0swami@gmail.com)
-
 ## License
 
 This project is open source and available under the MIT License.
