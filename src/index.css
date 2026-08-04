@@ -89,8 +89,12 @@
   border: 2px solid currentColor;
   background: var(--color-white);
   box-shadow: 3px 3px 0 currentColor;
-  transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease,
-    color 250ms ease, border-color 250ms ease;
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    background-color 250ms ease,
+    color 250ms ease,
+    border-color 250ms ease;
 }
 
 .dark .skill-card {
@@ -129,7 +133,9 @@
 .skills-reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 500ms ease var(--reveal-delay), transform 500ms ease var(--reveal-delay);
+  transition:
+    opacity 500ms ease var(--reveal-delay),
+    transform 500ms ease var(--reveal-delay);
 }
 
 .skills-reveal-visible {
@@ -160,19 +166,35 @@
 }
 
 /* Custom styles for experience timeline and project grids */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background-color: currentColor;
+}
+
 .timeline-card {
   position: relative;
-  border-left: 2px solid currentColor;
 }
 
 .timeline-dot {
   position: absolute;
-  left: -9px;
-  top: 6px;
+  left: 50%;
+  top: 1.5rem;
+  transform: translateX(-50%);
   width: 16px;
   height: 16px;
   background-color: currentColor;
-  border-radius: 50%;
+  border-radius: 9999px;
+}
+
+@media (min-width: 640px) {
+  .timeline-dot {
+    top: 1.75rem;
+  }
 }
 
 /* Ensure illustration wrapper doesn't clip badge on mobile */
