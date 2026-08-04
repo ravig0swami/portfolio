@@ -43,7 +43,7 @@ export default function App() {
       {isBlogRoute ? (
         <Blogs />
       ) : (
-        <main className="flex-grow">
+        <main className="grow">
           <Hero />
           <About />
           <Skills />
