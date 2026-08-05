@@ -77,9 +77,9 @@ export default function Contact() {
         {/* Contact Form — order-1 on mobile so it shows first */}
         <div className="lg:col-span-7 order-1 lg:order-2 bg-white dark:bg-zinc-900 border-2 border-black dark:border-white p-5 sm:p-6 md:p-8 neo-shadow-lg text-left">
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-            {/* Name & Email side-by-side on sm+ */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="space-y-2">
+            {/* Name & Email side-by-side on sm+ (name smaller, email larger) */}
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5">
+              <div className="space-y-2 sm:col-span-5">
                 <label
                   htmlFor="name"
                   className="block font-space font-bold text-sm sm:text-base"
@@ -92,12 +92,13 @@ export default function Contact() {
                   name="name"
                   value={formState.name}
                   onChange={handleChange}
+                  maxLength={20}
                   required
                   placeholder="John Doe "
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-black dark:border-zinc-700 bg-white dark:bg-zinc-950 font-outfit text-sm sm:text-base text-black dark:text-white placeholder-zinc-400 focus:outline-none focus:border-zinc-500 dark:focus:border-zinc-400 transition-colors"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 sm:col-span-7">
                 <label
                   htmlFor="email"
                   className="block font-space font-bold text-sm sm:text-base"
@@ -129,6 +130,7 @@ export default function Contact() {
                 name="message"
                 value={formState.message}
                 onChange={handleChange}
+                maxLength={500}
                 required
                 rows={5}
                 placeholder="Hi Ravi, let's talk about building a new web application!"
@@ -163,7 +165,10 @@ export default function Contact() {
               )}
             </button>
             {submitError && (
-              <p className="font-outfit text-sm text-red-600 dark:text-red-400" role="alert">
+              <p
+                className="font-outfit text-sm text-red-600 dark:text-red-400"
+                role="alert"
+              >
                 {submitError}
               </p>
             )}

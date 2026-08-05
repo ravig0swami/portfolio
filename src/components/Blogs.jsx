@@ -90,7 +90,9 @@ function BlogPost({ post }) {
           <ArrowLeft size={18} /> Back to blogs
         </a>
 
-        <div className={`${post.accent} h-3 border-2 border-black dark:border-white mb-8`} />
+        <div
+          className={`${post.accent} h-3 border-2 border-black dark:border-white mb-8`}
+        />
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 font-space text-xs font-bold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
           <span className="inline-flex items-center gap-1.5">
             <Tag size={14} /> {post.category}
@@ -137,9 +139,16 @@ export default function Blogs() {
   const handleShare = async (post) => {
     const shareUrl = `${window.location.origin}/blogs/${post.slug}`;
 
-    if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    if (
+      navigator.share &&
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    ) {
       try {
-        await navigator.share({ title: post.title, text: post.excerpt, url: shareUrl });
+        await navigator.share({
+          title: post.title,
+          text: post.excerpt,
+          url: shareUrl,
+        });
       } catch {
         // Sharing can be cancelled by the visitor.
       }
@@ -179,11 +188,13 @@ export default function Blogs() {
             </p>
             <h1 className="font-space font-extrabold text-5xl sm:text-6xl md:text-8xl leading-[0.95]">
               Ideas worth
-              <span className="block text-zinc-500 dark:text-zinc-400">shipping.</span>
+              <span className="block text-zinc-500 dark:text-zinc-400">
+                shipping.
+              </span>
             </h1>
             <p className="max-w-2xl font-outfit text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Tutorials, experiments, and notes from building useful products with
-              React, Node.js, and the technologies shaping the web.
+              Tutorials, experiments, and notes from building useful products
+              with React, Node.js, and the technologies shaping the web.
             </p>
           </div>
 
@@ -245,11 +256,13 @@ export default function Blogs() {
         </div>
 
         <div className="mt-16 w-full border-2 border-black dark:border-white p-6 sm:p-8 neo-shadow">
-          <h2 className="font-space font-extrabold text-2xl mb-2">More posts soon.</h2>
+          <h2 className="font-space font-extrabold text-2xl mb-2">
+            More posts soon.
+          </h2>
           <p className="font-outfit text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            This is where new tutorials, project breakdowns, and technology notes
-            will live. Add another post to the blog list in Blogs.jsx when it is
-            ready to publish.
+            This is where new tutorials, project breakdowns, and technology
+            notes will live. Add another post to the blog list in Blogs.jsx when
+            it is ready to publish.
           </p>
         </div>
       </section>
@@ -268,7 +281,10 @@ export default function Blogs() {
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between gap-4 mb-5">
-              <h2 id="share-dialog-title" className="font-space font-bold text-xl sm:text-2xl">
+              <h2
+                id="share-dialog-title"
+                className="font-space font-bold text-xl sm:text-2xl"
+              >
                 Share public link
               </h2>
               <button
@@ -286,7 +302,9 @@ export default function Blogs() {
             </p>
 
             <div className="flex items-center gap-3 border-2 border-zinc-300 dark:border-zinc-700 rounded-full pl-4 pr-1.5 py-1.5 mb-6">
-              <span className="font-outfit text-sm truncate flex-grow">{sharePost.shareUrl}</span>
+              <span className="font-outfit text-sm truncate flex-grow">
+                {sharePost.shareUrl}
+              </span>
               <button
                 type="button"
                 onClick={copyShareUrl}
@@ -300,7 +318,7 @@ export default function Blogs() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <a
                 href={`mailto:?subject=${encodeURIComponent(sharePost.title)}&body=${encodeURIComponent(sharePost.shareUrl)}`}
-                className="cursor-pointer flex flex-col items-center gap-2 border-2 border-transparent p-3 hover:border-black dark:hover:border-white"
+                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
               >
                 <Mail size={24} />
                 <span className="font-space font-bold text-xs">Email</span>
@@ -309,7 +327,7 @@ export default function Blogs() {
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(sharePost.shareUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer flex flex-col items-center gap-2 border-2 border-transparent p-3 hover:border-black dark:hover:border-white"
+                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
               >
                 <span className="font-space font-extrabold text-xl">f</span>
                 <span className="font-space font-bold text-xs">Facebook</span>
@@ -318,7 +336,7 @@ export default function Blogs() {
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(sharePost.title)}&url=${encodeURIComponent(sharePost.shareUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer flex flex-col items-center gap-2 border-2 border-transparent p-3 hover:border-black dark:hover:border-white"
+                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
               >
                 <span className="font-space font-extrabold text-xl">X</span>
                 <span className="font-space font-bold text-xs">X</span>
@@ -327,7 +345,7 @@ export default function Blogs() {
                 href={`https://www.reddit.com/submit?url=${encodeURIComponent(sharePost.shareUrl)}&title=${encodeURIComponent(sharePost.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer flex flex-col items-center gap-2 border-2 border-transparent p-3 hover:border-black dark:hover:border-white"
+                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
               >
                 <span className="font-space font-extrabold text-xl">r/</span>
                 <span className="font-space font-bold text-xs">Reddit</span>
