@@ -3,7 +3,7 @@ import { BookOpen, Calendar, Code2, Globe2, MapPin } from "lucide-react";
 export default function Experience() {
   const experiences = [
     {
-      role: "MERN Stack Developer",
+      role: "MERN Stack Developer Intern",
       company: "Alfido Tech",
       location: "India (Remote)",
       duration: "July 2026 – Present",

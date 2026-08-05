@@ -2,7 +2,8 @@ import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const isBlogRoute = window.location.pathname.startsWith("/blogs");
-  const sectionHref = (section) => (isBlogRoute ? `/#${section}` : `#${section}`);
+  const sectionHref = (section) =>
+    isBlogRoute ? `/#${section}` : `#${section}`;
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -19,12 +20,11 @@ export default function Footer() {
           >
             RG
             <span className="text-zinc-500 dark:text-zinc-400 font-normal">
-              .dev
+              .dev &copy; {new Date().getFullYear()}
             </span>
           </a>
           <p className="font-outfit text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-            &copy; {new Date().getFullYear()} Ravi Goswami. Handcrafted in
-            India.
+            Built with ❤️ using modern web technologies.
           </p>
         </div>
 
