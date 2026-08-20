@@ -1,7 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
 import { cwd, env } from "node:process";
 import { blogPosts } from "./src/data/blogPosts.js";
@@ -16,11 +22,11 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;");
 }
 
-function socialMetadata(post) {
+function socialMetadata(post, imageUrl) {
   const title = escapeHtml(post.title);
   const description = escapeHtml(post.excerpt);
   const url = `${siteOrigin}/blogs/${post.slug}`;
-  const image = `${siteOrigin}/blog-preview.png`;
+  const image = `${siteOrigin}${imageUrl}`;
 
   return `
     <title>${title} | Ravi Goswami</title>
@@ -47,17 +53,27 @@ function blogMetadataPlugin() {
     name: "generate-blog-metadata",
     closeBundle() {
       const distDirectory = join(cwd(), "dist");
+      const assetsDirectory = join(distDirectory, "assets");
       const shellPath = join(distDirectory, "index.html");
 
-      if (!existsSync(shellPath)) return;
+      if (!existsSync(shellPath) || !existsSync(assetsDirectory)) return;
+
+      const previewAsset = readdirSync(assetsDirectory).find((fileName) =>
+        fileName.startsWith("blogs-reading-"),
+      );
+
+      if (!previewAsset) {
+        throw new Error("Could not find the built blog preview image.");
+      }
 
       const shell = readFileSync(shellPath, "utf8");
+      const imageUrl = `/assets/${previewAsset}`;
 
       blogPosts.forEach((post) => {
         const postDirectory = join(distDirectory, "blogs", post.slug);
         mkdirSync(postDirectory, { recursive: true });
 
-        const metadata = socialMetadata(post);
+        const metadata = socialMetadata(post, imageUrl);
         const postShell = shell
           .replace(/<title>[\s\S]*?<\/title>/i, "")
           .replace(/\s*<meta name="description"[^>]*>/i, "")
