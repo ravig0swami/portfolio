@@ -135,7 +135,7 @@ function SkillCategory({ category, skills: categorySkills, index }) {
           {String(categorySkills.length).padStart(2, "0")}
         </span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {categorySkills.map((skill) => (
           <SkillCard key={skill.name} skill={skill} />
         ))}
@@ -161,7 +161,7 @@ export default function Skills() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 xl:gap-8 items-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-6 xl:gap-8 items-start">
         {skills.map((skillGroup, index) => {
           if (skillGroup.category === "Deployment") return null;
 
