@@ -4,7 +4,6 @@ import {
   CalendarDays,
   Check,
   Copy,
-  Mail,
   Share2,
   X,
   Tag,
@@ -139,20 +138,17 @@ export default function Blogs() {
   const handleShare = async (post) => {
     const shareUrl = `${window.location.origin}/blogs/${post.slug}`;
 
-    if (
-      navigator.share &&
-      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    ) {
+    if (navigator.share) {
       try {
         await navigator.share({
           title: post.title,
           text: post.excerpt,
           url: shareUrl,
         });
-      } catch {
-        // Sharing can be cancelled by the visitor.
+        return;
+      } catch (error) {
+        if (error.name === "AbortError") return;
       }
-      return;
     }
 
     setCopied(false);
@@ -298,7 +294,8 @@ export default function Blogs() {
             </div>
 
             <p className="font-outfit text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-              Share this article with your network or copy its public link.
+              Native sharing is unavailable in this browser. Copy the public
+              link instead.
             </p>
 
             <div className="flex items-center gap-3 border-2 border-zinc-300 dark:border-zinc-700 rounded-full pl-4 pr-1.5 py-1.5 mb-6">
@@ -313,43 +310,6 @@ export default function Blogs() {
                 {copied ? <Check size={16} /> : <Copy size={16} />}
                 {copied ? "Copied" : "Copy link"}
               </button>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <a
-                href={`mailto:?subject=${encodeURIComponent(sharePost.title)}&body=${encodeURIComponent(sharePost.shareUrl)}`}
-                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
-              >
-                <Mail size={24} />
-                <span className="font-space font-bold text-xs">Email</span>
-              </a>
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(sharePost.shareUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
-              >
-                <span className="font-space font-extrabold text-xl">f</span>
-                <span className="font-space font-bold text-xs">Facebook</span>
-              </a>
-              <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(sharePost.title)}&url=${encodeURIComponent(sharePost.shareUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
-              >
-                <span className="font-space font-extrabold text-xl">X</span>
-                <span className="font-space font-bold text-xs">X</span>
-              </a>
-              <a
-                href={`https://www.reddit.com/submit?url=${encodeURIComponent(sharePost.shareUrl)}&title=${encodeURIComponent(sharePost.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cursor-pointer flex flex-col items-center gap-2 p-3 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
-              >
-                <span className="font-space font-extrabold text-xl">r/</span>
-                <span className="font-space font-bold text-xs">Reddit</span>
-              </a>
             </div>
           </div>
         </div>
