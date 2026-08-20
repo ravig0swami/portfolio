@@ -1,13 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { cwd, env } from "node:process";
 import { blogPosts } from "./src/data/blogPosts.js";
@@ -22,11 +16,11 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;");
 }
 
-function socialMetadata(post, imageUrl) {
+function socialMetadata(post) {
   const title = escapeHtml(post.title);
   const description = escapeHtml(post.excerpt);
   const url = `${siteOrigin}/blogs/${post.slug}`;
-  const image = `${siteOrigin}${imageUrl}`;
+  const image = `${siteOrigin}/blog-preview.png`;
 
   return `
     <title>${title} | Ravi Goswami</title>
@@ -37,6 +31,9 @@ function socialMetadata(post, imageUrl) {
     <meta property="og:description" content="${description}" />
     <meta property="og:url" content="${url}" />
     <meta property="og:image" content="${image}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="800" />
+    <meta property="og:image:alt" content="Developer reading a technology book" />
     <meta property="og:site_name" content="Ravi Goswami" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${title}" />
@@ -50,27 +47,17 @@ function blogMetadataPlugin() {
     name: "generate-blog-metadata",
     closeBundle() {
       const distDirectory = join(cwd(), "dist");
-      const assetsDirectory = join(distDirectory, "assets");
       const shellPath = join(distDirectory, "index.html");
 
-      if (!existsSync(shellPath) || !existsSync(assetsDirectory)) return;
-
-      const previewAsset = readdirSync(assetsDirectory).find((fileName) =>
-        fileName.startsWith("blogs-reading-"),
-      );
-
-      if (!previewAsset) {
-        throw new Error("Could not find the built blog preview image.");
-      }
+      if (!existsSync(shellPath)) return;
 
       const shell = readFileSync(shellPath, "utf8");
-      const imageUrl = `/assets/${previewAsset}`;
 
       blogPosts.forEach((post) => {
         const postDirectory = join(distDirectory, "blogs", post.slug);
         mkdirSync(postDirectory, { recursive: true });
 
-        const metadata = socialMetadata(post, imageUrl);
+        const metadata = socialMetadata(post);
         const postShell = shell
           .replace(/<title>[\s\S]*?<\/title>/i, "")
           .replace(/\s*<meta name="description"[^>]*>/i, "")
