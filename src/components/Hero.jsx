@@ -72,8 +72,9 @@ export default function Hero() {
               </a>
             ))}
             <a
-              href="/Ravi_Web-Dev_Resume.pdf"
-              download
+              href="https://drive.google.com/file/d/1VomkURd_4FYowLbsDD7POgFt6jjDYT-t/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-5 py-3 text-sm font-medium transition-colors duration-300 bg-black text-white border-2 border-black dark:bg-white dark:text-black dark:border-white neo-btn"
             >
               Download CV
