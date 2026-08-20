@@ -68,7 +68,7 @@ export default function Experience() {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="grid grid-cols-[4rem_1fr] gap-x-8 items-start"
+              className="grid grid-cols-[0_1fr] lg:grid-cols-[4rem_1fr] gap-x-0 lg:gap-x-8 items-start"
             >
               <div className="relative flex justify-center">
                 <span className="timeline-dot" />

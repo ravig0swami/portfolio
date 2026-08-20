@@ -182,6 +182,11 @@
 }
 
 /* Custom styles for experience timeline and project grids */
+.timeline-line,
+.timeline-dot {
+  display: none;
+}
+
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -205,6 +210,13 @@
   height: 16px;
   background-color: currentColor;
   border-radius: 9999px;
+}
+
+@media (min-width: 1024px) {
+  .timeline-line,
+  .timeline-dot {
+    display: block;
+  }
 }
 
 @media (min-width: 640px) {
