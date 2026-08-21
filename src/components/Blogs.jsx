@@ -84,10 +84,16 @@ export default function Blogs() {
       url: shareUrl,
     };
 
-    const canUseNativeShare =
-      typeof navigator.share === "function" &&
-      (typeof navigator.canShare !== "function" ||
-        navigator.canShare(shareData));
+    let canUseNativeShare =
+      typeof navigator !== "undefined" && typeof navigator.share === "function";
+
+    if (canUseNativeShare && typeof navigator.canShare === "function") {
+      try {
+        canUseNativeShare = navigator.canShare({ url: shareUrl });
+      } catch {
+        canUseNativeShare = false;
+      }
+    }
 
     if (canUseNativeShare) {
       try {
