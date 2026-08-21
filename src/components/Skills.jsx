@@ -103,6 +103,7 @@ function SkillCategory({ category, skills: categorySkills, index }) {
     const element = categoryRef.current;
     if (!element) return undefined;
 
+    // Reveal each category on entry, then disconnect to avoid repeated work.
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

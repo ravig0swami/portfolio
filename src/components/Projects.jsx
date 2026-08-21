@@ -135,7 +135,6 @@ export default function Projects() {
         </p>
       </div>
 
-      {/* 1 col on mobile, 2 cols on md+ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
         {projectsList.map((project, index) => (
           <div
@@ -143,7 +142,6 @@ export default function Projects() {
             className="flex flex-col bg-white dark:bg-zinc-900 border-2 border-black dark:border-white p-4 sm:p-5 neo-shadow neo-transition hover:-translate-y-1 hover:shadow-[8px_8px_0px_#000000] dark:hover:shadow-[8px_8px_0px_#ffffff] rounded-none justify-between text-left"
           >
             <div className="space-y-3 sm:space-y-4">
-              {/* Card Header */}
               <div className="flex justify-between items-center">
                 <div className="p-2 sm:p-2.5 bg-zinc-50 dark:bg-zinc-800 border-2 border-black dark:border-zinc-700">
                   <Folder size={18} className="text-black dark:text-white" />
@@ -153,7 +151,6 @@ export default function Projects() {
                 </span>
               </div>
 
-              {/* Title & Description */}
               <div className="space-y-2">
                 <h3 className="font-space font-extrabold text-xl sm:text-2xl tracking-tight">
                   {project.title}
@@ -163,7 +160,6 @@ export default function Projects() {
                 </p>
               </div>
 
-              {/* Tech Tags */}
               <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                 {project.tech.map((tag, tagIndex) => (
                   <span
@@ -176,7 +172,6 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Links */}
             <div className="flex items-center gap-3 sm:gap-4 pt-5 sm:pt-6 border-t border-zinc-100 dark:border-zinc-800 mt-5 sm:mt-6">
               <a
                 href={project.github}

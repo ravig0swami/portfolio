@@ -52,6 +52,7 @@ function blogMetadataPlugin() {
   return {
     name: "generate-blog-metadata",
     closeBundle() {
+      // Create crawlable metadata pages for each client-side blog route after bundling.
       const distDirectory = join(cwd(), "dist");
       const assetsDirectory = join(distDirectory, "assets");
       const shellPath = join(distDirectory, "index.html");
@@ -85,7 +86,7 @@ function blogMetadataPlugin() {
   };
 }
 
-// https://vite.dev/config/
+// Vite configuration reference.
 export default defineConfig({
   plugins: [react(), tailwindcss(), blogMetadataPlugin()],
 });

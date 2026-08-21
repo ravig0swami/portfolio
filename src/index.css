@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-outfit: "Outfit", system-ui, -apple-system, sans-serif;
@@ -20,13 +20,9 @@
   }
 }
 
-/* Custom Neo-Brutalist / Illustration-Based Design Helpers */
+/* Shared neo-brutalist component helpers */
 .neo-border {
   border: 2px solid currentColor;
-}
-
-.neo-border-thin {
-  border: 1px solid currentColor;
 }
 
 .neo-shadow {
@@ -37,15 +33,11 @@
   box-shadow: 8px 8px 0px 0px currentColor;
 }
 
-.neo-shadow-sm {
-  box-shadow: 2px 2px 0px 0px currentColor;
-}
-
 .neo-transition {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Buttons and Clickables with lift effect */
+/* Interactive button treatment */
 .neo-btn {
   border: 2px solid currentColor;
   box-shadow: 4px 4px 0px 0px currentColor;
@@ -63,7 +55,7 @@
   box-shadow: 0px 0px 0px 0px currentColor;
 }
 
-/* Black buttons: use a neutral gray neo-shadow visible in both light and dark modes, and remove border */
+/* Keep dark-button shadows visible in both themes. */
 .neo-btn.bg-black {
   border: none;
   box-shadow: 4px 4px 0px 0px rgba(180, 180, 180, 0.65);
@@ -77,23 +69,6 @@
 .neo-btn.bg-black:active {
   transform: translate(2px, 2px);
   box-shadow: 0px 0px 0px 0px rgba(128, 128, 128, 0);
-}
-
-/* Skill Box hover effect */
-.skill-box {
-  border: 2px solid currentColor;
-  box-shadow: 4px 4px 0px 0px currentColor;
-  transition: all 0.2s ease-in-out;
-  background-color: var(--color-white);
-}
-
-.dark .skill-box {
-  background-color: var(--color-zinc-900);
-}
-
-.skill-box:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 7px 7px 0px 0px currentColor;
 }
 
 .skill-card {
@@ -171,7 +146,7 @@
   }
 }
 
-/* Simple outline icons filter */
+/* Apply the illustration treatment. */
 .mono-illustration {
   filter: grayscale(1) contrast(1.1);
 }
@@ -181,7 +156,7 @@
   opacity: 0.95;
 }
 
-/* Custom styles for experience timeline and project grids */
+/* Timeline layout helpers */
 .timeline-line,
 .timeline-dot {
   display: none;
@@ -195,10 +170,6 @@
   width: 2px;
   height: 100%;
   background-color: currentColor;
-}
-
-.timeline-card {
-  position: relative;
 }
 
 .timeline-dot {
@@ -225,14 +196,7 @@
   }
 }
 
-/* Ensure illustration wrapper doesn't clip badge on mobile */
-.about-illustration-wrap {
-  position: relative;
-  padding: 1rem;
-  padding-bottom: 2rem;
-}
-
-/* Subtle illustration animations to emulate motion when GIFs are not available */
+/* Add subtle motion to static illustrations. */
 @keyframes floatY {
   0% {
     transform: translateY(0);

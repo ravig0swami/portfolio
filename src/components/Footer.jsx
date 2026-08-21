@@ -12,7 +12,6 @@ export default function Footer() {
   return (
     <footer className="w-full bg-white dark:bg-zinc-950 border-t-2 border-black dark:border-white text-black dark:text-white transition-colors duration-300 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-        {/* Logo and Copyright */}
         <div className="text-center sm:text-left space-y-1.5">
           <a
             href={isBlogRoute ? "/" : "#"}
@@ -28,7 +27,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Footer Nav Links */}
         <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6 text-xs sm:text-sm font-space font-medium">
           <a
             href={sectionHref("about")}
@@ -62,7 +60,6 @@ export default function Footer() {
           </a>
         </nav>
 
-        {/* Back to Top */}
         <button
           onClick={handleScrollToTop}
           className="hidden sm:block p-2.5 sm:p-3 bg-white dark:bg-zinc-900 border-2 border-black dark:border-white neo-btn shrink-0"

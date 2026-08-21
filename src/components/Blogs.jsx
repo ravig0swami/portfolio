@@ -68,6 +68,8 @@ export default function Blogs() {
   const [sharePost, setSharePost] = useState(null);
   const [copied, setCopied] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // A second path segment identifies an individual post; otherwise the index is shown.
   const blogSlug = window.location.pathname.split("/").filter(Boolean)[1];
   const selectedPost = blogPosts.find((post) => post.slug === blogSlug);
   const totalPages = Math.ceil(blogPosts.length / postsPerPage);
@@ -94,6 +96,7 @@ export default function Blogs() {
       }
     }
 
+    // Use the browser share sheet when available and fall back to a copy dialog elsewhere.
     if (canUseNativeShare) {
       try {
         await navigator.share(shareData);
@@ -111,6 +114,7 @@ export default function Blogs() {
     if (!sharePost) return;
 
     try {
+      // Older browsers may not expose the async Clipboard API.
       if (typeof navigator.clipboard?.writeText === "function") {
         await navigator.clipboard.writeText(sharePost.shareUrl);
       } else {

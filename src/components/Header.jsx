@@ -4,7 +4,10 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 export default function Header({ darkTheme, setDarkTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isBlogRoute = window.location.pathname.startsWith("/blogs");
-  const sectionHref = (section) => (isBlogRoute ? `/#${section}` : `#${section}`);
+
+  // Blog pages send section links back to the portfolio homepage before jumping to an anchor.
+  const sectionHref = (section) =>
+    isBlogRoute ? `/#${section}` : `#${section}`;
 
   const navItems = [
     { label: "About Me", href: sectionHref("about") },
@@ -17,7 +20,6 @@ export default function Header({ darkTheme, setDarkTheme }) {
   return (
     <header className="sticky top-0 z-50 w-full bg-white dark:bg-zinc-950 border-b-2 border-black dark:border-white text-black dark:text-white transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-        {/* Logo */}
         <a
           href={isBlogRoute ? "/" : "#"}
           className="font-space font-bold text-xl sm:text-2xl tracking-tight hover:-translate-y-0.5 transition-transform shrink-0"
@@ -28,7 +30,6 @@ export default function Header({ darkTheme, setDarkTheme }) {
           </span>
         </a>
 
-        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           {navItems.map((item) => (
             <a
@@ -41,7 +42,6 @@ export default function Header({ darkTheme, setDarkTheme }) {
           ))}
         </nav>
 
-        {/* Desktop Right Actions */}
         <div className="hidden lg:flex items-center space-x-3">
           <button
             onClick={() => setDarkTheme(!darkTheme)}
@@ -59,7 +59,6 @@ export default function Header({ darkTheme, setDarkTheme }) {
           </a>
         </div>
 
-        {/* Mobile / Tablet Actions */}
         <div className="flex items-center space-x-2 sm:space-x-3 lg:hidden">
           <button
             onClick={() => setDarkTheme(!darkTheme)}
@@ -79,7 +78,6 @@ export default function Header({ darkTheme, setDarkTheme }) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t-2 border-black dark:border-white bg-white dark:bg-zinc-950 px-4 py-6 space-y-4">
           <nav className="flex flex-col space-y-1">

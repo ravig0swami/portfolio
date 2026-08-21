@@ -17,6 +17,7 @@ export default function Contact() {
     setSubmitError("");
 
     try {
+      // FormSubmit handles delivery without requiring a backend for this static portfolio.
       const response = await fetch(
         "https://formsubmit.co/ajax/dev.ravig0swami@gmail.com",
         {
@@ -72,12 +73,9 @@ export default function Contact() {
         </p>
       </div>
 
-      {/* On mobile: form first, info cards below. On lg: info left, form right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 max-w-5xl mx-auto">
-        {/* Contact Form — order-1 on mobile so it shows first */}
         <div className="lg:col-span-7 order-1 lg:order-2 bg-white dark:bg-zinc-900 border-2 border-black dark:border-white p-5 sm:p-6 md:p-8 neo-shadow-lg text-left">
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-            {/* Name & Email side-by-side on sm+ (name smaller, email larger) */}
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5">
               <div className="space-y-2 sm:col-span-5">
                 <label
@@ -175,7 +173,6 @@ export default function Contact() {
           </form>
         </div>
 
-        {/* Contact Info Cards — order-2 on mobile (below form) */}
         <div className="lg:col-span-5 order-2 lg:order-1 flex flex-col justify-start space-y-4 sm:space-y-6 text-left">
           <div className="p-4 sm:p-6 bg-white dark:bg-zinc-900 border-2 border-black dark:border-white neo-shadow neo-transition hover:-translate-y-0.5">
             <div className="flex items-center gap-3 sm:gap-4">

@@ -26,7 +26,6 @@ export default function About() {
       className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b-2 border-black dark:border-white text-black dark:text-white transition-colors duration-300"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        {/* Left Column: Portrait Illustration — shows below text on mobile */}
         <div className="lg:col-span-5 flex justify-center items-center order-last lg:order-first">
           <div className="relative pt-4 pb-8 px-4 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white neo-shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md">
             <div className="aspect-square bg-zinc-50 dark:bg-zinc-800 border-2 border-dashed border-zinc-400 dark:border-zinc-600 overflow-hidden">
@@ -36,14 +35,12 @@ export default function About() {
                 className="w-full h-full object-cover mono-illustration animate-subtle-rotate"
               />
             </div>
-            {/* Badge — positioned inside wrapper to avoid clip */}
             <div className="absolute bottom-2 right-2 sm:-bottom-3 sm:-right-3 bg-black dark:bg-white text-white dark:text-black py-1.5 px-3 font-space font-bold text-sm border-2 border-black dark:border-white">
               Full Stack Developer
             </div>
           </div>
         </div>
 
-        {/* Right Column: About Details */}
         <div className="lg:col-span-7 flex flex-col text-left space-y-5 sm:space-y-6">
           <div className="space-y-3 sm:space-y-4">
             <h2 className="font-space font-extrabold text-3xl sm:text-4xl md:text-5xl">

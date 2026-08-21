@@ -35,7 +35,6 @@ export default function Hero() {
   return (
     <section className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b-2 border-black dark:border-white text-black dark:text-white transition-colors duration-300">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        {/* Left Text Content */}
         <div className="lg:col-span-7 flex flex-col items-start text-left space-y-4 sm:space-y-5">
           <div className="inline-block px-3 py-1 font-space font-bold text-xs uppercase tracking-widest bg-zinc-100 dark:bg-zinc-800 border-2 border-black dark:border-white">
             Available For Freelance &amp; Roles
@@ -57,7 +56,6 @@ export default function Hero() {
             scalable, secure backend systems with Node.js, Express, and MongoDB.
           </p>
 
-          {/* Social Icons */}
           <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 items-center">
             {socials.map((social) => (
               <a
@@ -82,7 +80,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Illustration */}
         <div className="lg:col-span-5 flex justify-center items-center">
           <div className="relative p-3 sm:p-4 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white neo-shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md">
             <img
