@@ -80,7 +80,6 @@ export default function Blogs() {
     const shareUrl = `${window.location.origin}/blogs/${post.slug}`;
     const shareData = {
       title: post.title,
-      text: post.excerpt,
       url: shareUrl,
     };
 
