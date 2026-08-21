@@ -22,7 +22,12 @@ export default function App() {
     return false;
   });
 
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
+
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const root = window.document.documentElement;
     if (darkTheme) {
       root.classList.add("dark");
@@ -34,7 +39,7 @@ export default function App() {
   }, [darkTheme]);
 
   // The app uses the pathname as a lightweight route switch for the portfolio and blog.
-  const isBlogRoute = window.location.pathname.startsWith("/blogs");
+  const isBlogRoute = currentPath.startsWith("/blogs");
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300 flex flex-col font-outfit overflow-x-hidden">

@@ -1,12 +1,16 @@
 import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
-  const isBlogRoute = window.location.pathname.startsWith("/blogs");
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
+  const isBlogRoute = currentPath.startsWith("/blogs");
   const sectionHref = (section) =>
     isBlogRoute ? `/#${section}` : `#${section}`;
 
   const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (

@@ -14,7 +14,7 @@ import { blogPosts } from "../data/blogPosts";
 
 function BlogPost({ post }) {
   return (
-    <main className="flex-grow">
+    <main className="grow">
       <article className="w-full lg:w-[80%] max-w-none mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-16">
         <a
           href="/blogs"
@@ -70,7 +70,9 @@ export default function Blogs() {
   const [currentPage, setCurrentPage] = useState(1);
 
   // A second path segment identifies an individual post; otherwise the index is shown.
-  const blogSlug = window.location.pathname.split("/").filter(Boolean)[1];
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
+  const blogSlug = currentPath.split("/").filter(Boolean)[1];
   const selectedPost = blogPosts.find((post) => post.slug === blogSlug);
   const totalPages = Math.ceil(blogPosts.length / postsPerPage);
   const visiblePosts = blogPosts.slice(
@@ -79,7 +81,11 @@ export default function Blogs() {
   );
 
   const handleShare = async (post) => {
-    const shareUrl = `${window.location.origin}/blogs/${post.slug}`;
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://ravig0swami.vercel.app";
+    const shareUrl = `${origin}/blogs/${post.slug}`;
     const shareData = {
       title: post.title,
       url: shareUrl,
@@ -141,7 +147,7 @@ export default function Blogs() {
   }
 
   return (
-    <main className="flex-grow">
+    <main className="grow">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-16 border-b-2 border-black dark:border-white">
         <a
           href="/"
@@ -187,7 +193,7 @@ export default function Blogs() {
               className="flex flex-col bg-white dark:bg-zinc-900 border-2 border-black dark:border-white neo-shadow-lg"
             >
               <div className={`${post.accent} h-3 border-b-2 border-black`} />
-              <div className="p-6 sm:p-8 flex flex-col flex-grow">
+              <div className="p-6 sm:p-8 flex flex-col grow">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 font-space text-xs font-bold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
                   <span className="inline-flex items-center gap-1.5">
                     <Tag size={14} /> {post.category}
@@ -199,7 +205,7 @@ export default function Blogs() {
                 <h2 className="font-space font-extrabold text-2xl sm:text-3xl leading-tight mb-4">
                   {post.title}
                 </h2>
-                <p className="font-outfit text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed flex-grow">
+                <p className="font-outfit text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed grow">
                   {post.excerpt}
                 </p>
                 <div className="flex items-center justify-between gap-4 mt-8 pt-5 border-t-2 border-zinc-200 dark:border-zinc-700">
@@ -284,7 +290,7 @@ export default function Blogs() {
 
       {sharePost && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 px-4"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 px-4"
           role="presentation"
           onClick={() => setSharePost(null)}
         >
@@ -318,7 +324,7 @@ export default function Blogs() {
             </p>
 
             <div className="flex items-center gap-3 border-2 border-zinc-300 dark:border-zinc-700 rounded-full pl-4 pr-1.5 py-1.5 mb-6">
-              <span className="font-outfit text-sm truncate flex-grow">
+              <span className="font-outfit text-sm truncate grow">
                 {sharePost.shareUrl}
               </span>
               <button

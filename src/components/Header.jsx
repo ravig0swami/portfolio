@@ -3,7 +3,9 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 
 export default function Header({ darkTheme, setDarkTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isBlogRoute = window.location.pathname.startsWith("/blogs");
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
+  const isBlogRoute = currentPath.startsWith("/blogs");
 
   // Blog pages send section links back to the portfolio homepage before jumping to an anchor.
   const sectionHref = (section) =>
