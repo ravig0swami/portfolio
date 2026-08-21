@@ -31,7 +31,7 @@ A modern and responsive portfolio website built to showcase my projects, technic
 
 ```bash
 git clone https://github.com/ravig0swami/portfolio.git
-````
+```
 
 2. Navigate to the project directory
 
@@ -64,6 +64,7 @@ portfolio/
 ├── package.json
 └── README.md
 ```
+
 ## License
 
 This project is open source and available under the MIT License.

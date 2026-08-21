@@ -103,16 +103,16 @@ export default function Blogs() {
 
   return (
     <main className="flex-grow">
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24 border-b-2 border-black dark:border-white">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-16 border-b-2 border-black dark:border-white">
         <a
           href="/"
-          className="inline-flex items-center gap-2 font-space font-bold text-sm mb-10 hover:underline"
+          className="inline-flex items-center gap-2 font-space font-bold text-sm mb-6 hover:underline"
         >
           <ArrowLeft size={18} /> Back to portfolio
         </a>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <div className="lg:col-span-7 space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+          <div className="lg:col-span-7 space-y-4">
             <p className="font-space font-bold text-sm uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
               Ravi&apos;s notebook
             </p>
@@ -187,12 +187,12 @@ export default function Blogs() {
 
         <div className="mt-16 w-full border-2 border-black dark:border-white p-6 sm:p-8 neo-shadow">
           <h2 className="font-space font-extrabold text-2xl mb-2">
-            More posts soon.
+            More posts coming soon.
           </h2>
           <p className="font-outfit text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            This is where new tutorials, project breakdowns, and technology
-            notes will live. Add another post to the blog list in Blogs.jsx when
-            it is ready to publish.
+            New tutorials, project breakdowns, and practical notes on modern web
+            development are on the way. Check back soon for fresh ideas and
+            lessons from building real-world digital experiences.
           </p>
         </div>
       </section>
