@@ -78,14 +78,20 @@ export default function Blogs() {
 
   const handleShare = async (post) => {
     const shareUrl = `${window.location.origin}/blogs/${post.slug}`;
+    const shareData = {
+      title: post.title,
+      text: post.excerpt,
+      url: shareUrl,
+    };
 
-    if (navigator.share) {
+    const canUseNativeShare =
+      typeof navigator.share === "function" &&
+      (typeof navigator.canShare !== "function" ||
+        navigator.canShare(shareData));
+
+    if (canUseNativeShare) {
       try {
-        await navigator.share({
-          title: post.title,
-          text: post.excerpt,
-          url: shareUrl,
-        });
+        await navigator.share(shareData);
         return;
       } catch (error) {
         if (error.name === "AbortError") return;
@@ -99,9 +105,26 @@ export default function Blogs() {
   const copyShareUrl = async () => {
     if (!sharePost) return;
 
-    await navigator.clipboard.writeText(sharePost.shareUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      if (typeof navigator.clipboard?.writeText === "function") {
+        await navigator.clipboard.writeText(sharePost.shareUrl);
+      } else {
+        const input = document.createElement("textarea");
+        input.value = sharePost.shareUrl;
+        input.setAttribute("readonly", "true");
+        input.style.position = "fixed";
+        input.style.opacity = "0";
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      }
+
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
   };
 
   if (selectedPost) {
