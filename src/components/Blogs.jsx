@@ -15,18 +15,18 @@ import { blogPosts } from "../data/blogPosts";
 function BlogPost({ post }) {
   return (
     <main className="flex-grow">
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
+      <article className="w-full lg:w-[80%] max-w-none mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-16">
         <a
           href="/blogs"
-          className="inline-flex items-center gap-2 font-space font-bold text-sm mb-10 hover:underline"
+          className="inline-flex items-center gap-2 font-space font-bold text-sm mb-6 hover:underline"
         >
           <ArrowLeft size={18} /> Back to blogs
         </a>
 
         <div
-          className={`${post.accent} h-3 border-2 border-black dark:border-white mb-8`}
+          className={`${post.accent} h-3 border-2 border-black dark:border-white mb-6`}
         />
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 font-space text-xs font-bold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 font-space text-xs font-bold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
           <span className="inline-flex items-center gap-1.5">
             <Tag size={14} /> {post.category}
           </span>
@@ -34,16 +34,16 @@ function BlogPost({ post }) {
             <CalendarDays size={14} /> {post.date}
           </span>
         </div>
-        <h1 className="font-space font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight mb-6">
+        <h1 className="font-space font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight mb-4">
           {post.title}
         </h1>
-        <p className="font-outfit text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed border-b-2 border-zinc-200 dark:border-zinc-700 pb-8">
+        <p className="font-outfit text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed border-b-2 border-zinc-200 dark:border-zinc-700 pb-6">
           {post.excerpt}
         </p>
 
-        <div className="mt-10 space-y-10">
+        <div className="mt-8 space-y-8">
           {post.sections.map((section) => (
-            <section key={section.heading} className="space-y-4">
+            <section key={section.heading} className="space-y-3">
               <h2 className="font-space font-extrabold text-2xl sm:text-3xl">
                 {section.heading}
               </h2>
@@ -64,10 +64,17 @@ function BlogPost({ post }) {
 }
 
 export default function Blogs() {
+  const postsPerPage = 10;
   const [sharePost, setSharePost] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const blogSlug = window.location.pathname.split("/").filter(Boolean)[1];
   const selectedPost = blogPosts.find((post) => post.slug === blogSlug);
+  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+  const visiblePosts = blogPosts.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage,
+  );
 
   const handleShare = async (post) => {
     const shareUrl = `${window.location.origin}/blogs/${post.slug}`;
@@ -142,7 +149,7 @@ export default function Blogs() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {blogPosts.map((post) => (
+          {visiblePosts.map((post) => (
             <article
               key={post.title}
               className="flex flex-col bg-white dark:bg-zinc-900 border-2 border-black dark:border-white neo-shadow-lg"
@@ -184,6 +191,52 @@ export default function Blogs() {
             </article>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <nav
+            className="flex flex-wrap items-center justify-center gap-2 mt-10"
+            aria-label="Blog pagination"
+          >
+            <button
+              type="button"
+              onClick={() => setCurrentPage((page) => Math.max(page - 1, 1))}
+              disabled={currentPage === 1}
+              className="inline-flex items-center gap-2 border-2 border-black dark:border-white px-3 py-2 font-space font-bold text-sm neo-btn disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none disabled:transform-none"
+            >
+              <ArrowLeft size={16} /> Previous
+            </button>
+
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  type="button"
+                  onClick={() => setCurrentPage(page)}
+                  aria-label={`Go to page ${page}`}
+                  aria-current={currentPage === page ? "page" : undefined}
+                  className={`min-w-10 border-2 border-black dark:border-white px-3 py-2 font-space font-bold text-sm neo-btn ${
+                    currentPage === page
+                      ? "bg-black text-white dark:bg-white dark:text-black"
+                      : "bg-white dark:bg-zinc-900"
+                  }`}
+                >
+                  {page}
+                </button>
+              ),
+            )}
+
+            <button
+              type="button"
+              onClick={() =>
+                setCurrentPage((page) => Math.min(page + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+              className="inline-flex items-center gap-2 border-2 border-black dark:border-white px-3 py-2 font-space font-bold text-sm neo-btn disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none disabled:transform-none"
+            >
+              Next <ArrowRight size={16} />
+            </button>
+          </nav>
+        )}
 
         <div className="mt-16 w-full border-2 border-black dark:border-white p-6 sm:p-8 neo-shadow">
           <h2 className="font-space font-extrabold text-2xl mb-2">
