@@ -41,7 +41,7 @@ export default function Hero() {
             Available For Freelance &amp; Roles
           </div>
 
-          <h1 className="font-space font-extrabold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
+          <h1 className="font-space font-extrabold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl leading-tight">
             Hello, I'm{" "}
             <span className="underline decoration-4 decoration-zinc-400">
               Ravi Goswami
