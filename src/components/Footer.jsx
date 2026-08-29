@@ -1,11 +1,7 @@
 import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
-  const currentPath =
-    typeof window !== "undefined" ? window.location.pathname : "/";
-  const isBlogRoute = currentPath.startsWith("/blogs");
-  const sectionHref = (section) =>
-    isBlogRoute ? `/#${section}` : `#${section}`;
+  const sectionHref = (section) => `#${section}`;
 
   const handleScrollToTop = () => {
     if (typeof window !== "undefined") {
@@ -18,7 +14,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-center sm:text-left space-y-1.5">
           <a
-            href={isBlogRoute ? "/" : "#"}
+            href="#"
             className="font-space font-bold text-lg sm:text-xl tracking-tight"
           >
             RG
@@ -55,12 +51,6 @@ export default function Footer() {
             className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
           >
             Projects
-          </a>
-          <a
-            href="/blogs"
-            className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Blogs
           </a>
         </nav>
 

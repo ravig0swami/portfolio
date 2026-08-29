@@ -3,27 +3,20 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 
 export default function Header({ darkTheme, setDarkTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const currentPath =
-    typeof window !== "undefined" ? window.location.pathname : "/";
-  const isBlogRoute = currentPath.startsWith("/blogs");
-
-  // Blog pages send section links back to the portfolio homepage before jumping to an anchor.
-  const sectionHref = (section) =>
-    isBlogRoute ? `/#${section}` : `#${section}`;
+  const sectionHref = (section) => `#${section}`;
 
   const navItems = [
     { label: "About Me", href: sectionHref("about") },
     { label: "Skills", href: sectionHref("skills") },
     { label: "Experience", href: sectionHref("experience") },
     { label: "Projects", href: sectionHref("projects") },
-    { label: "Blogs", href: "/blogs" },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white dark:bg-zinc-950 border-b-2 border-black dark:border-white text-black dark:text-white transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
         <a
-          href={isBlogRoute ? "/" : "#"}
+          href="#"
           className="font-space font-bold text-xl sm:text-2xl tracking-tight hover:-translate-y-0.5 transition-transform shrink-0"
         >
           RG

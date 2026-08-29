@@ -1,18 +1,16 @@
 # Ravi Goswami Portfolio
 
-A modern developer portfolio and blog built with React, Vite, and Tailwind CSS. It showcases my profile, experience, skills, featured projects, and a blog section with article pages and share functionality.
+A modern developer portfolio built with React, Vite, and Tailwind CSS. It showcases my profile, experience, skills, and featured projects.
 
 ## Live Demo
 
 - Portfolio: https://ravig0swami.vercel.app/
-- Blog route: https://ravig0swami.vercel.app/blogs
 
 ## Overview
 
-This project is a single-page portfolio application with a lightweight route switch based on the current pathname:
+This project is a single-page portfolio application:
 
 - The homepage includes About, Skills, Experience, Projects, and Contact sections.
-- The blog section is mounted from the same app under the /blogs path.
 - A theme toggle stores the user's preference in localStorage and updates the document root class.
 - The contact form sends messages via FormSubmit to the email configured in the app.
 
@@ -24,8 +22,6 @@ This project is a single-page portfolio application with a lightweight route swi
 - Hero section with social links and CV download
 - About, skills, experience, and projects sections
 - Project cards with GitHub and live demo links
-- Blog index page with pagination and share dialog
-- Individual blog article pages rendered from the data source
 - Contact form with submission feedback and validation
 
 ## Tech Stack
@@ -47,15 +43,12 @@ portfolio/
 │   ├── assets/
 │   ├── components/
 │   │   ├── About.jsx
-│   │   ├── Blogs.jsx
 │   │   ├── Contact.jsx
 │   │   ├── Experience.jsx
 │   │   ├── Footer.jsx
 │   │   ├── Header.jsx
 │   │   ├── Hero.jsx
 │   │   └── Projects.jsx
-│   ├── data/
-│   │   └── blogPosts.js
 │   ├── App.jsx
 │   ├── index.css
 │   └── main.jsx
@@ -114,8 +107,6 @@ http://localhost:5173
 ## Notes on the current implementation
 
 - Theme state is initialized from localStorage and falls back to the system preference when no saved choice exists.
-- The app identifies blog routes with `window.location.pathname.startsWith("/blogs")` and renders the blog UI instead of the homepage sections.
-- Blog content is stored in `src/data/blogPosts.js` and rendered dynamically.
 - The contact form currently uses FormSubmit for email delivery.
 - The site is configured for deployment on Vercel.
 

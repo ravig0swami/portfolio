@@ -7,7 +7,6 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Blogs from "./components/Blogs";
 
 export default function App() {
   // Initialize the theme once, preferring the saved choice over system settings.
@@ -22,9 +21,6 @@ export default function App() {
     return false;
   });
 
-  const currentPath =
-    typeof window !== "undefined" ? window.location.pathname : "/";
-
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -38,25 +34,18 @@ export default function App() {
     }
   }, [darkTheme]);
 
-  // The app uses the pathname as a lightweight route switch for the portfolio and blog.
-  const isBlogRoute = currentPath.startsWith("/blogs");
-
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300 flex flex-col font-outfit overflow-x-hidden">
       <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
 
-      {isBlogRoute ? (
-        <Blogs />
-      ) : (
-        <main className="grow">
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Contact />
-        </main>
-      )}
+      <main className="grow">
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
 
       <Footer />
     </div>
