@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo } from "react";
 import { FaGithub, FaGitAlt, FaNodeJs, FaReact } from "react-icons/fa";
 import { RiJavascriptFill, RiTailwindCssFill } from "react-icons/ri";
 import {
@@ -49,32 +49,11 @@ const skills = [
 
 const SkillCard = memo(function SkillCard({ skill }) {
   const Icon = skill.icon;
-  const cardRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const element = cardRef.current;
-    if (!element) return undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 },
-    );
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <article
-      ref={cardRef}
       aria-label={`${skill.name}${skill.featured ? ", core skill" : ""}`}
-      className={`skill-card skills-reveal ${skill.featured ? "skill-card-featured" : ""} ${isVisible ? "skills-reveal-visible" : ""}`}
+      className={`skill-card ${skill.featured ? "skill-card-featured" : ""}`}
     >
       <Icon aria-hidden="true" className="skill-card-icon" />
       <div className="min-w-0">

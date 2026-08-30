@@ -131,28 +131,14 @@
   height: 1.9rem;
 }
 
-.skills-reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
-}
-
-.skills-reveal-visible {
+.skill-card {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skill-card,
-  .skills-reveal {
+  .skill-card {
     transition: none;
-  }
-
-  .skills-reveal {
-    opacity: 1;
-    transform: none;
   }
 }
 
