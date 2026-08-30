@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -21,6 +21,10 @@ export default function App() {
     return false;
   });
 
+  const toggleDarkTheme = useCallback(() => {
+    setDarkTheme((current) => !current);
+  }, []);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -36,7 +40,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300 flex flex-col font-outfit overflow-x-hidden">
-      <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      <Header darkTheme={darkTheme} setDarkTheme={toggleDarkTheme} />
 
       <main className="grow">
         <Hero />

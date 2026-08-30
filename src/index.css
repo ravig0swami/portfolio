@@ -91,11 +91,11 @@
   background: var(--color-white);
   box-shadow: 3px 3px 0 currentColor;
   transition:
-    transform 250ms ease,
-    box-shadow 250ms ease,
-    background-color 250ms ease,
-    color 250ms ease,
-    border-color 250ms ease;
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
 }
 
 .dark .skill-card {
@@ -135,8 +135,8 @@
   opacity: 0;
   transform: translateY(18px);
   transition:
-    opacity 500ms ease var(--reveal-delay),
-    transform 500ms ease var(--reveal-delay);
+    opacity 220ms ease,
+    transform 220ms ease;
 }
 
 .skills-reveal-visible {

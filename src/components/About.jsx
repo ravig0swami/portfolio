@@ -1,25 +1,26 @@
+import { memo } from "react";
 import aboutImg from "../assets/about-laptop.png";
 import { BookOpen, Code, Compass } from "lucide-react";
 
-export default function About() {
-  const points = [
-    {
-      icon: <BookOpen className="text-zinc-600 dark:text-zinc-400" size={22} />,
-      title: "Education",
-      desc: "Pursuing a Bachelor of Computer Applications (BCA) specializing in Full Stack Development, which provides a strong foundation in computer science and programming methodologies.",
-    },
-    {
-      icon: <Code className="text-zinc-600 dark:text-zinc-400" size={22} />,
-      title: "Current Stack Focus",
-      desc: "Already proficient in frontend design and technologies. Currently leveling up backend systems using Node.js, Express, and MongoDB (MERN Stack) to construct full-scale applications.",
-    },
-    {
-      icon: <Compass className="text-zinc-600 dark:text-zinc-400" size={22} />,
-      title: "Hobby & Exploration",
-      desc: "In my free time, I love to build new side projects, experiment with experimental frameworks, solve coding puzzles, and explore modern deployment workflows.",
-    },
-  ];
+const points = [
+  {
+    icon: <BookOpen className="text-zinc-600 dark:text-zinc-400" size={22} />,
+    title: "Education",
+    desc: "Pursuing a Bachelor of Computer Applications (BCA) specializing in Full Stack Development, which provides a strong foundation in computer science and programming methodologies.",
+  },
+  {
+    icon: <Code className="text-zinc-600 dark:text-zinc-400" size={22} />,
+    title: "Current Stack Focus",
+    desc: "Already proficient in frontend design and technologies. Currently leveling up backend systems using Node.js, Express, and MongoDB (MERN Stack) to construct full-scale applications.",
+  },
+  {
+    icon: <Compass className="text-zinc-600 dark:text-zinc-400" size={22} />,
+    title: "Hobby & Exploration",
+    desc: "In my free time, I love to build new side projects, experiment with experimental frameworks, solve coding puzzles, and explore modern deployment workflows.",
+  },
+];
 
+const About = memo(function About() {
   return (
     <section
       id="about"
@@ -32,6 +33,10 @@ export default function About() {
               <img
                 src={aboutImg}
                 alt="Ravi Goswami Portrait Outline"
+                width={640}
+                height={640}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover mono-illustration animate-subtle-rotate"
               />
             </div>
@@ -79,4 +84,6 @@ export default function About() {
       </div>
     </section>
   );
-}
+});
+
+export default About;

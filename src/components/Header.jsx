@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
-export default function Header({ darkTheme, setDarkTheme }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const sectionHref = (section) => `#${section}`;
+const navItems = [
+  { label: "About Me", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+];
 
-  const navItems = [
-    { label: "About Me", href: sectionHref("about") },
-    { label: "Skills", href: sectionHref("skills") },
-    { label: "Experience", href: sectionHref("experience") },
-    { label: "Projects", href: sectionHref("projects") },
-  ];
+const Header = memo(function Header({ darkTheme, setDarkTheme }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleTheme = useCallback(() => {
+    setDarkTheme();
+  }, [setDarkTheme]);
+
+  const toggleMenu = useCallback(() => {
+    setMobileMenuOpen((open) => !open);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white dark:bg-zinc-950 border-b-2 border-black dark:border-white text-black dark:text-white transition-colors duration-300">
@@ -39,7 +46,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
 
         <div className="hidden lg:flex items-center space-x-3">
           <button
-            onClick={() => setDarkTheme(!darkTheme)}
+            onClick={toggleTheme}
             className="p-2 neo-btn bg-white dark:bg-zinc-900 rounded-none text-black dark:text-white"
             aria-label="Toggle theme"
           >
@@ -47,7 +54,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
           </button>
 
           <a
-            href={sectionHref("contact")}
+            href="#contact"
             className="px-4 py-2 font-space font-bold text-sm bg-black dark:bg-white text-white dark:text-black neo-btn whitespace-nowrap"
           >
             Get In Touch
@@ -56,7 +63,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
 
         <div className="flex items-center space-x-2 sm:space-x-3 lg:hidden">
           <button
-            onClick={() => setDarkTheme(!darkTheme)}
+            onClick={toggleTheme}
             className="p-2 neo-btn bg-white dark:bg-zinc-900 rounded-none text-black dark:text-white"
             aria-label="Toggle theme"
           >
@@ -64,7 +71,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
           </button>
 
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={toggleMenu}
             className="p-2 border-2 border-black dark:border-white hover:bg-neutral-100 dark:hover:bg-zinc-800 transition-colors"
             aria-label="Toggle menu"
           >
@@ -89,7 +96,7 @@ export default function Header({ darkTheme, setDarkTheme }) {
           </nav>
           <div className="pt-2">
             <a
-              href={sectionHref("contact")}
+              href="#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full text-center px-4 py-3 font-space font-bold bg-black dark:bg-white text-white dark:text-black neo-btn"
             >
@@ -100,4 +107,6 @@ export default function Header({ darkTheme, setDarkTheme }) {
       )}
     </header>
   );
-}
+});
+
+export default Header;

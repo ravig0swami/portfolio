@@ -1,4 +1,117 @@
+import { memo } from "react";
 import { ExternalLink, Folder } from "lucide-react";
+
+const projectsList = [
+  {
+    title: "Job Application Management System",
+    description:
+      "A full-stack job tracking platform that enables users to save job postings, manage application statuses, monitor interview progress, and organize their job search through a secure, responsive dashboard with authentication and database integration.",
+    tech: [
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "Supabase",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Authentication",
+      "Git/GitHub",
+    ],
+    github:
+      "https://github.com/ravig0swami/job-application-management-system",
+    live: "https://jams-frontend.onrender.com/",
+    category: "Full Stack",
+  },
+
+  {
+    title: "SyncBoard - Real-Time Collaborative Whiteboard",
+    description:
+      "A real-time collaborative whiteboard that allows multiple users to draw simultaneously using room-based collaboration powered by Socket.IO. Features live canvas synchronization, customizable drawing tools, and a responsive interface without requiring authentication.",
+    tech: [
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "Socket.IO",
+      "Tailwind CSS",
+      "Real-time Collaboration",
+      "Git/GitHub",
+    ],
+    github: "https://github.com/ravig0swami/sync-board",
+    live: "https://sync-board-client.onrender.com/",
+    category: "Full Stack",
+  },
+
+  {
+    title: "Spendex - Personal Expense Manager",
+    description:
+      "A modern expense management application that helps users track daily expenses, visualize spending analytics, manage transaction history, and monitor financial activities through an intuitive and responsive dashboard.",
+    tech: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "State Management",
+      "Vite",
+      "Tailwind CSS",
+      "Shadcn/UI",
+      "LocalStorage",
+      "Git/GitHub",
+    ],
+    github: "https://github.com/ravig0swami/spendex",
+    live: "https://spend-ex.netlify.app/",
+    category: "Frontend",
+  },
+
+  {
+    title: "AI-Powered Personal Portfolio",
+    description:
+      "A responsive developer portfolio showcasing projects, technical skills, and contact information with modern UI, smooth animations, optimized performance, and AI-assisted development workflow.",
+    tech: [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "JavaScript",
+      "Responsive Design",
+      "React Router",
+      "Vite",
+      "Git/GitHub",
+    ],
+    github: "https://github.com/ravig0swami/portfolio",
+    live: "https://ravig0swami.vercel.app/",
+    category: "Frontend",
+  },
+
+  {
+    title: "Elevate Digital - Premium Marketing Agency Website",
+    description:
+      "A premium digital marketing agency landing page featuring interactive sections, animated UI components, responsive layouts, pricing plans, testimonials, and optimized user experience.",
+    tech: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Responsive Design",
+      "CSS Animations",
+      "Vanilla JS",
+      "Google Fonts",
+      "Git/GitHub",
+    ],
+    github: "https://github.com/ravig0swami/elevate-digital",
+    live: "https://elevate-digital.netlify.app",
+    category: "Frontend",
+  },
+
+  {
+    title: "Random Joke Generator",
+    description:
+      "A React application that fetches random jokes from a public API, demonstrating API integration, asynchronous data fetching, reusable components, and responsive UI design.",
+    tech: ["React", "Tailwind CSS", "JavaScript", "REST API", "Git/GitHub"],
+    github: "https://github.com/ravig0swami/random-jokes",
+    live: "https://haha-jokes.netlify.app/",
+    category: "Frontend",
+  },
+];
 
 const GithubIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -6,119 +119,7 @@ const GithubIcon = () => (
   </svg>
 );
 
-export default function Projects() {
-  const projectsList = [
-    {
-      title: "Job Application Management System",
-      description:
-        "A full-stack job tracking platform that enables users to save job postings, manage application statuses, monitor interview progress, and organize their job search through a secure, responsive dashboard with authentication and database integration.",
-      tech: [
-        "JavaScript",
-        "React",
-        "Next.js",
-        "Node.js",
-        "Express.js",
-        "Supabase",
-        "Tailwind CSS",
-        "PostgreSQL",
-        "Authentication",
-        "Git/GitHub",
-      ],
-      github:
-        "https://github.com/ravig0swami/job-application-management-system",
-      live: "https://jams-frontend.onrender.com/",
-      category: "Full Stack",
-    },
-
-    {
-      title: "SyncBoard - Real-Time Collaborative Whiteboard",
-      description:
-        "A real-time collaborative whiteboard that allows multiple users to draw simultaneously using room-based collaboration powered by Socket.IO. Features live canvas synchronization, customizable drawing tools, and a responsive interface without requiring authentication.",
-      tech: [
-        "JavaScript",
-        "React",
-        "Next.js",
-        "Node.js",
-        "Express.js",
-        "Socket.IO",
-        "Tailwind CSS",
-        "Real-time Collaboration",
-        "Git/GitHub",
-      ],
-      github: "https://github.com/ravig0swami/sync-board",
-      live: "https://sync-board-client.onrender.com/",
-      category: "Full Stack",
-    },
-
-    {
-      title: "Spendex - Personal Expense Manager",
-      description:
-        "A modern expense management application that helps users track daily expenses, visualize spending analytics, manage transaction history, and monitor financial activities through an intuitive and responsive dashboard.",
-      tech: [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "State Management",
-        "Vite",
-        "Tailwind CSS",
-        "Shadcn/UI",
-        "LocalStorage",
-        "Git/GitHub",
-      ],
-      github: "https://github.com/ravig0swami/spendex",
-      live: "https://spend-ex.netlify.app/",
-      category: "Frontend",
-    },
-
-    {
-      title: "AI-Powered Personal Portfolio",
-      description:
-        "A responsive developer portfolio showcasing projects, technical skills, and contact information with modern UI, smooth animations, optimized performance, and AI-assisted development workflow.",
-      tech: [
-        "React",
-        "Next.js",
-        "Tailwind CSS",
-        "JavaScript",
-        "Responsive Design",
-        "React Router",
-        "Vite",
-        "Git/GitHub",
-      ],
-      github: "https://github.com/ravig0swami/portfolio",
-      live: "https://ravig0swami.vercel.app/",
-      category: "Frontend",
-    },
-
-    {
-      title: "Elevate Digital - Premium Marketing Agency Website",
-      description:
-        "A premium digital marketing agency landing page featuring interactive sections, animated UI components, responsive layouts, pricing plans, testimonials, and optimized user experience.",
-      tech: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Responsive Design",
-        "CSS Animations",
-        "Vanilla JS",
-        "Google Fonts",
-        "Git/GitHub",
-      ],
-      github: "https://github.com/ravig0swami/elevate-digital",
-      live: "https://elevate-digital.netlify.app",
-      category: "Frontend",
-    },
-
-    {
-      title: "Random Joke Generator",
-      description:
-        "A React application that fetches random jokes from a public API, demonstrating API integration, asynchronous data fetching, reusable components, and responsive UI design.",
-      tech: ["React", "Tailwind CSS", "JavaScript", "REST API", "Git/GitHub"],
-      github: "https://github.com/ravig0swami/random-jokes",
-      live: "https://haha-jokes.netlify.app/",
-      category: "Frontend",
-    },
-  ];
-
+const Projects = memo(function Projects() {
   return (
     <section
       id="projects"
@@ -197,4 +198,6 @@ export default function Projects() {
       </div>
     </section>
   );
-}
+});
+
+export default Projects;

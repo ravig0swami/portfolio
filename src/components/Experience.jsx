@@ -1,48 +1,49 @@
+import { memo } from "react";
 import { BookOpen, Calendar, Code2, Globe2, MapPin } from "lucide-react";
 
-export default function Experience() {
-  const experiences = [
-    {
-      role: "MERN Stack Developer Intern",
-      company: "Alfido Tech",
-      location: "India (Remote)",
-      duration: "July 2026 – Present",
-      description: [
-        "Built scalable MERN applications using MongoDB, Express.js, React.js, and Node.js to deliver responsive client solutions.",
-        "Implemented RESTful APIs, schema design, and frontend components for seamless data-driven interactions.",
-        "Maintained application performance, code quality, and deployments while collaborating with development stakeholders.",
-      ],
-      tag: "Development",
-      icon: Code2,
-    },
-    {
-      role: "Freelance Full Stack Developer",
-      company: "Independent Client Engagements",
-      location: "Remote",
-      duration: "Jan 2025 – Present",
-      description: [
-        "Built full-stack MERN web applications for independent clients, delivering responsive interfaces and dynamic backend services.",
-        "Implemented RESTful APIs with Express and Node.js, while integrating MongoDB for efficient data handling and storage.",
-        "Collaborated closely with clients to define project requirements, set milestones, and ship polished production-ready websites.",
-      ],
-      tag: "Freelance",
-      icon: Globe2,
-    },
-    {
-      role: "BCA Scholar (Full Stack Development)",
-      company: "MDU University",
-      location: "Gurugram India",
-      duration: "Aug 2024 – Present",
-      description: [
-        "Pursuing BCA with a specialization in full-stack development, focusing on frontend, backend, UI/UX, and web application architecture.",
-        "Learning MERN Stack alongside programming languages including C, C++, Java, Python, and studying Data Structures and Algorithms.",
-        "Working on academic and team projects that combine responsive interfaces with database-backed server logic.",
-      ],
-      tag: "Academic",
-      icon: BookOpen,
-    },
-  ];
+const experiences = [
+  {
+    role: "MERN Stack Developer Intern",
+    company: "Alfido Tech",
+    location: "India (Remote)",
+    duration: "July 2026 – Present",
+    description: [
+      "Built scalable MERN applications using MongoDB, Express.js, React.js, and Node.js to deliver responsive client solutions.",
+      "Implemented RESTful APIs, schema design, and frontend components for seamless data-driven interactions.",
+      "Maintained application performance, code quality, and deployments while collaborating with development stakeholders.",
+    ],
+    tag: "Development",
+    icon: Code2,
+  },
+  {
+    role: "Freelance Full Stack Developer",
+    company: "Independent Client Engagements",
+    location: "Remote",
+    duration: "Jan 2025 – Present",
+    description: [
+      "Built full-stack MERN web applications for independent clients, delivering responsive interfaces and dynamic backend services.",
+      "Implemented RESTful APIs with Express and Node.js, while integrating MongoDB for efficient data handling and storage.",
+      "Collaborated closely with clients to define project requirements, set milestones, and ship polished production-ready websites.",
+    ],
+    tag: "Freelance",
+    icon: Globe2,
+  },
+  {
+    role: "BCA Scholar (Full Stack Development)",
+    company: "MDU University",
+    location: "Gurugram India",
+    duration: "Aug 2024 – Present",
+    description: [
+      "Pursuing BCA with a specialization in full-stack development, focusing on frontend, backend, UI/UX, and web application architecture.",
+      "Learning MERN Stack alongside programming languages including C, C++, Java, Python, and studying Data Structures and Algorithms.",
+      "Working on academic and team projects that combine responsive interfaces with database-backed server logic.",
+    ],
+    tag: "Academic",
+    icon: BookOpen,
+  },
+];
 
+const Experience = memo(function Experience() {
   return (
     <section
       id="experience"
@@ -128,4 +129,6 @@ export default function Experience() {
       </div>
     </section>
   );
-}
+});
+
+export default Experience;

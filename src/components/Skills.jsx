@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { FaGithub, FaGitAlt, FaNodeJs, FaReact } from "react-icons/fa";
 import { RiJavascriptFill, RiTailwindCssFill } from "react-icons/ri";
 import {
@@ -47,7 +47,7 @@ const skills = [
   { name: "Render", icon: SiRender },
 ];
 
-function SkillCard({ skill, index }) {
+const SkillCard = memo(function SkillCard({ skill }) {
   const Icon = skill.icon;
   const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -75,7 +75,6 @@ function SkillCard({ skill, index }) {
       ref={cardRef}
       aria-label={`${skill.name}${skill.featured ? ", core skill" : ""}`}
       className={`skill-card skills-reveal ${skill.featured ? "skill-card-featured" : ""} ${isVisible ? "skills-reveal-visible" : ""}`}
-      style={{ "--reveal-delay": `${index * 50}ms` }}
     >
       <Icon aria-hidden="true" className="skill-card-icon" />
       <div className="min-w-0">
@@ -90,9 +89,9 @@ function SkillCard({ skill, index }) {
       </div>
     </article>
   );
-}
+});
 
-export default function Skills() {
+const Skills = memo(function Skills() {
   return (
     <section
       id="skills"
@@ -110,10 +109,12 @@ export default function Skills() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-        {skills.map((skill, index) => (
-          <SkillCard key={skill.name} skill={skill} index={index} />
+        {skills.map((skill) => (
+          <SkillCard key={skill.name} skill={skill} />
         ))}
       </div>
     </section>
   );
-}
+});
+
+export default Skills;
