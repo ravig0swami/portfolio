@@ -145,6 +145,9 @@
 /* Apply the illustration treatment. */
 .mono-illustration {
   filter: grayscale(1) contrast(1.1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  image-rendering: auto;
 }
 
 .dark .mono-illustration {
@@ -207,13 +210,13 @@
 
 @keyframes slowRotate {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg) translateZ(0);
   }
   50% {
-    transform: rotate(1.2deg);
+    transform: rotate(0.8deg) translateZ(0);
   }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(0deg) translateZ(0);
   }
 }
 
@@ -225,4 +228,7 @@
 .animate-subtle-rotate {
   animation: slowRotate 6s ease-in-out infinite;
   will-change: transform;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
