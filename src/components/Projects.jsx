@@ -18,8 +18,7 @@ const projectsList = [
       "Authentication",
       "Git/GitHub",
     ],
-    github:
-      "https://github.com/ravig0swami/job-application-management-system",
+    github: "https://github.com/ravig0swami/job-application-management-system",
     live: "https://jams-frontend.onrender.com/",
     category: "Full Stack",
   },
@@ -137,9 +136,9 @@ const Projects = memo(function Projects() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
-        {projectsList.map((project, index) => (
+        {projectsList.map((project) => (
           <div
-            key={index}
+            key={project.title}
             className="flex flex-col bg-white dark:bg-zinc-900 border-2 border-black dark:border-white p-4 sm:p-5 neo-shadow neo-transition hover:-translate-y-1 hover:shadow-[8px_8px_0px_#000000] dark:hover:shadow-[8px_8px_0px_#ffffff] rounded-none justify-between text-left"
           >
             <div className="space-y-3 sm:space-y-4">

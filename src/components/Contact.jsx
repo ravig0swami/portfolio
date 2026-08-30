@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 
-export default function Contact() {
+const Contact = memo(function Contact() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -10,52 +10,67 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const resetTimerRef = useRef(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError("");
-
-    try {
-      // FormSubmit handles delivery without requiring a backend for this static portfolio.
-      const response = await fetch(
-        "https://formsubmit.co/ajax/dev.ravig0swami@gmail.com",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name: formState.name,
-            email: formState.email,
-            message: formState.message,
-            _subject: `New portfolio message from ${formState.name}`,
-            _template: "table",
-            _captcha: "false",
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error("Message delivery failed");
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        clearTimeout(resetTimerRef.current);
       }
+    };
+  }, []);
 
-      setIsSubmitting(false);
-      setIsSent(true);
-      setFormState({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSent(false), 3000);
-    } catch {
-      setIsSubmitting(false);
-      setSubmitError(
-        "We could not send your message. Please try again or email me directly.",
-      );
-    }
-  };
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      setSubmitError("");
 
-  const handleChange = (e) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
-  };
+      try {
+        const response = await fetch(
+          "https://formsubmit.co/ajax/dev.ravig0swami@gmail.com",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              name: formState.name,
+              email: formState.email,
+              message: formState.message,
+              _subject: `New portfolio message from ${formState.name}`,
+              _template: "table",
+              _captcha: "false",
+            }),
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error("Message delivery failed");
+        }
+
+        setIsSubmitting(false);
+        setIsSent(true);
+        setFormState({ name: "", email: "", message: "" });
+        if (resetTimerRef.current) {
+          clearTimeout(resetTimerRef.current);
+        }
+        resetTimerRef.current = setTimeout(() => setIsSent(false), 3000);
+      } catch {
+        setIsSubmitting(false);
+        setSubmitError(
+          "We could not send your message. Please try again or email me directly.",
+        );
+      }
+    },
+    [formState],
+  );
+
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setFormState((current) => ({ ...current, [name]: value }));
+  }, []);
 
   return (
     <section
@@ -222,4 +237,6 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+});
+
+export default Contact;

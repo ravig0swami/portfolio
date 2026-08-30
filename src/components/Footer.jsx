@@ -1,13 +1,19 @@
+import { memo, useCallback } from "react";
 import { ArrowUp } from "lucide-react";
 
-export default function Footer() {
-  const sectionHref = (section) => `#${section}`;
+const sectionLinks = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+];
 
-  const handleScrollToTop = () => {
+const Footer = memo(function Footer() {
+  const handleScrollToTop = useCallback(() => {
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
+  }, []);
 
   return (
     <footer className="w-full bg-white dark:bg-zinc-950 border-t-2 border-black dark:border-white text-black dark:text-white transition-colors duration-300 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
@@ -28,30 +34,15 @@ export default function Footer() {
         </div>
 
         <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6 text-xs sm:text-sm font-space font-medium">
-          <a
-            href={sectionHref("about")}
-            className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            About
-          </a>
-          <a
-            href={sectionHref("skills")}
-            className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Skills
-          </a>
-          <a
-            href={sectionHref("experience")}
-            className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Experience
-          </a>
-          <a
-            href={sectionHref("projects")}
-            className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Projects
-          </a>
+          {sectionLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="relative text-black dark:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-current after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         <button
@@ -64,4 +55,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+export default Footer;
